@@ -9,18 +9,18 @@ class App extends Component {
     this.state = {
       ingredients: []
     };
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
-  onSearchClick(e) {
-    e.preventDefult();
-    console.log(e);
+  handleSearchClick(e) {
+    console.log("clicked");
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar />
+          <SearchBar onSearchClick={this.handleSearchClick} />
         </header>
         <main>
           <CardList />

@@ -4,14 +4,25 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: "",
+      value: "",
       suggestions: []
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(e) {
+    const { value } = e.target;
+    this.setState(state => ({ value }));
+    // Fetch this.state.suggestions from here
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSearchClick();
   }
   render() {
     return (
       <div>
-        <form role="search">
+        <form onSubmit={this.handleSubmit} role="search">
           <div>
             <label htmlFor="ingredient-search">
               Ingredients you'd like to use:
@@ -24,6 +35,8 @@ export default class SearchBar extends Component {
               aria-label="search for the ingredients you'd like to use"
               autoFocus={true}
               list="ingredients"
+              onChange={this.handleChange}
+              value={this.state.value}
             />
             <datalist id="ingredients">
               {/* TODO:  
@@ -33,7 +46,7 @@ export default class SearchBar extends Component {
               <option value="onion" />
               <option value="tomato" />
             </datalist>
-            <button onClick={this.onSearchClick}>Search</button>
+            <button>Search</button>
           </div>
         </form>
       </div>
