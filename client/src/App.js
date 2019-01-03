@@ -16,11 +16,10 @@ class App extends Component {
     this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
-  handleSearchClick(e) {
+  handleSearchClick(value) {
     console.log("clicked");
     axios.get(`/recipes/onions`).then(res => {
-      // console.log(res.data);
-      this.setState({ recipes: res.data });
+      this.setState({ ingredients: value, recipes: res.data });
     });
   }
 

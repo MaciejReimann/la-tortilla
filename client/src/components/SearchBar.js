@@ -24,7 +24,7 @@ export default class SearchBar extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSearchClick();
+    this.props.onSearchClick(this.state.value);
   }
   render() {
     return (
