@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import SearchBar from "./components/SearchBar";
-import CardList from "./components/CardList";
+
 import "./App.css";
 
 class App extends Component {
@@ -20,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar onSearchClick={this.handleSearchClick} />
+
         </header>
         <main>
           <CardList />
