@@ -23,8 +23,8 @@ router.get("/:ingredients", (req, res) => {
   axios
     .get(`${recipe_puppy}/api/?i=${ingredients}&p=${page}`)
     .then(response => {
-      const body = response.data.results;
-      res.send({ body });
+      const data = response.data.results;
+      res.send(data);
     })
     .catch(err => {
       console.error(err.message);
