@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -13,7 +14,11 @@ export default class SearchBar extends Component {
   handleChange(e) {
     const { value } = e.target;
     this.setState(state => ({ value }));
-    // Fetch this.state.suggestions from here
+
+    axios.get(`/suggestions/${value}`).then(res => {
+      console.log(res.data);
+      this.setState({ suggestions: res.data });
+    });
   }
   handleSubmit(e) {
     e.preventDefault();
