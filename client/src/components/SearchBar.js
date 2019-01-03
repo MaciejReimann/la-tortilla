@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Datalist from "./generic/Datalist";
+
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -39,18 +41,11 @@ export default class SearchBar extends Component {
               placeholder="Search for ingredients..."
               aria-label="search for the ingredients you'd like to use"
               autoFocus={true}
-              list="ingredients"
+              list="suggestions"
               onChange={this.handleChange}
               value={this.state.value}
             />
-            <datalist id="ingredients">
-              {/* TODO:  
-              - populate it by the response data after x chars have been put in 
-              - move to a separate component and use props children? */}
-              <option value="basil" />
-              <option value="onion" />
-              <option value="tomato" />
-            </datalist>
+            <Datalist id="suggestions" values={this.state.suggestions} />
             <button>Search</button>
           </div>
         </form>
