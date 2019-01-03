@@ -18,7 +18,6 @@ export default class SearchBar extends Component {
     this.setState(state => ({ value }));
 
     axios.get(`/suggestions/${value}`).then(res => {
-      console.log(res.data);
       this.setState({ suggestions: res.data });
     });
   }

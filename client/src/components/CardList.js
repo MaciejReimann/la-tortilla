@@ -1,7 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class CardList extends Component {
-  render() {
-    return <div>This is the card list.</div>;
-  }
+import Card from "./generic/Card";
+
+export default function CardList({ data }) {
+  return (
+    <div>
+      {data.map((item, i) => {
+        const { title, ingredients, href, thumbnail } = item;
+        return (
+          <Card
+            key={title}
+            title={title}
+            tags={ingredients}
+            link={href}
+            image={thumbnail}
+          />
+        );
+      })}
+    </div>
+  );
 }

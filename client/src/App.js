@@ -17,9 +17,18 @@ class App extends Component {
   }
 
   handleSearchClick(value) {
-    console.log("clicked");
-    axios.get(`/recipes/onions`).then(res => {
-      this.setState({ ingredients: value, recipes: res.data });
+    // Query must be a string of (unique) ingredients,
+    // coma separated, no spaces between;
+    const nextIngredients = [...this.state.ingredients, value].filter(
+      (item, i, arr) => arr.indexOf(item) === i
+    );
+    const query = nextIngredients.join();
+
+    axios.get(`/recipes/${query}`).then(res => {
+      this.setState({
+        ingredients: nextIngredients,
+        recipes: res.data
+      });
     });
   }
 
@@ -30,7 +39,7 @@ class App extends Component {
           <SearchBar onSearchClick={this.handleSearchClick} />
         </header>
         <main>
-          <CardList />
+          <CardList data={this.state.recipes} />
         </main>
       </div>
     );

@@ -18,6 +18,8 @@ router.get("/:ingredients", (req, res) => {
   // TODO: get further pages and concatenate until the content gets repeated, but the first time send immediately
 
   let page = 1;
+  //ingredients (if more than one), coma delimited
+
   console.log(ingredients);
 
   axios
