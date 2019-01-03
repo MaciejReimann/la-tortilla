@@ -1,35 +1,29 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ingredients: []
+    };
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+  }
+
+  handleSearchClick(e) {
+    console.log("clicked");
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <form role="search">
-            <div>
-              <label htmlFor="ingredient-search">
-                Ingredients you'd like to use:
-              </label>
-              <input
-                name="ingredient-search"
-                id="ingredient-search"
-                type="search"
-                placeholder="Search for ingredients..."
-                aria-label="search for the ingredients you'd like to use"
-                autoFocus={true}
-                list="ingredients"
-              />
-              <datalist id="ingredients">
-                <option value="basil" />
-                <option value="onion" />
-                <option value="tomato" />
-              </datalist>
-              <button>Search</button>
-            </div>
-          </form>
+
         </header>
+        <main>
+          <CardList />
+        </main>
       </div>
     );
   }
