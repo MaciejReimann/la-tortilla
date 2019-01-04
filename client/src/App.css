@@ -1,14 +1,109 @@
-.App {
+/* .App {
   text-align: center;
+} */
+
+/*==========================
+		  GRID LAYOUT
+=============================*/
+
+.header {
+  grid-area: header;
+}
+.main {
+  grid-area: main;
+}
+.aside-left {
+  grid-area: aside-l;
 }
 
-.App-header {
-  background-color: #282c34;
-  /* min-height: 100vh; */
-  display: flex;
+.aside-right {
+  grid-area: aside-r;
+}
+
+.app {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 75% 1fr;
+  grid-template-rows: 8rem 1fr;
+  grid-template-areas:
+    "header header header"
+    "aside-l main aside-r";
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+/*==========================
+		  COLORS
+=============================*/
+
+.header {
+  border: 1px solid black;
+  background-color: darkgrey;
+}
+
+.main {
+  color: red;
+  background-color: lightgrey;
+}
+/* .aside {
+  color: red;
+  background-color: grey;
+} */
+
+/* .header {
+  background-color: grey; */
+/* min-height: 100vh; */
+/* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; */
+
+/* min-height: 8rem;
+} */
+
+/* .search-bar {
+  border: 1px solid black;
+  width: 80%;
+  display: grid; */
+
+/* min-height: 100%; */
+/* display: inline; */
+/* } */
+
+/* .search-input {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid blue;
+  background-color: lightblue;
+  height: 100%;
+  font-size: 1.5rem;
+} */
+
+/* .search-button {
+  border: 1px solid red;
+} */
+
+/* .main {
+  display: grid;
+  justify-content: center;
+}
+
+.card-container {
+  border: 1px solid black;
+  max-width: 100vw;
+}
+
+.card {
+  border: 1px solid black;
+  width: 80%;
+}
+
+.title {
+  font-size: 1.2rem;
+} */
+
+.tag {
+  font-size: 0.8rem;
 }

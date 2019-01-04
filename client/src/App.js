@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Header from "./components/generic/Header";
+import Main from "./components/generic/Main";
+import Aside from "./components/generic/Aside";
+// import CSSGrid from "./components/generic/CSSGrid";
+
 import SearchBar from "./components/SearchBar";
 import CardList from "./components/CardList";
 
-import "./App.css";
+import "./app.css";
 
 class App extends Component {
   constructor(props) {
@@ -34,13 +39,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="app">
+        <Header className="header">
           <SearchBar onSearchClick={this.handleSearchClick} />
-        </header>
-        <main>
+        </Header>
+        <Aside className="aside-left" />
+        <Main>
           <CardList data={this.state.recipes} />
-        </main>
+        </Main>
+        <Aside className="aside-right" />
       </div>
     );
   }

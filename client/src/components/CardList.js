@@ -4,7 +4,7 @@ import Card from "./generic/Card";
 
 export default function CardList({ data }) {
   return (
-    <div>
+    <div className="card-container">
       {data.map((item, i) => {
         const { title, ingredients, href, thumbnail } = item;
         return (
@@ -12,8 +12,8 @@ export default function CardList({ data }) {
             key={title}
             title={title}
             tags={ingredients}
-            link={href}
-            image={thumbnail}
+            href={href}
+            src={thumbnail}
           />
         );
       })}

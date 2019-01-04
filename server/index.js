@@ -19,11 +19,11 @@ app.use("/recipes", recipes);
 app.use("/suggestions", suggestions);
 
 // Set static folder BEFORE DEPLOYMENT
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+// app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+// });
 
 // Set static folder
 app.use(express.static(path.resolve(__dirname, "../client/build")));
