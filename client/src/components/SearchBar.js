@@ -3,6 +3,8 @@ import axios from "axios";
 
 import Datalist from "./generic/Datalist";
 
+import "../styles/searchbar.css";
+
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -27,25 +29,27 @@ export default class SearchBar extends Component {
   }
   render() {
     return (
-      // <div >
-      <form className="search-bar" onSubmit={this.handleSubmit} role="search">
-        <label htmlFor="ingredient-search" />
-        <input
-          className="search-input"
-          name="ingredient-search"
-          id="ingredient-search"
-          type="search"
-          placeholder="Search for ingredients..."
-          aria-label="search for the ingredients you'd like to use"
-          autoFocus={true}
-          list="suggestions"
-          onChange={this.handleChange}
-          value={this.state.value}
-        />
-        <Datalist id="suggestions" values={this.state.suggestions} />
-        <button className="search-button">Search</button>
-      </form>
-      // </div>
+      <div className="search-bar">
+        <form onSubmit={this.handleSubmit} role="search">
+          <label htmlFor="ingredient-search" />
+          <input
+            className="search-input"
+            name="ingredient-search"
+            id="ingredient-search"
+            type="search"
+            placeholder="Search for ingredients..."
+            aria-label="search for the ingredients you'd like to use"
+            autoFocus={true}
+            list="suggestions"
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
+          <Datalist id="suggestions" values={this.state.suggestions} />
+          <button className="search-button">
+            <i className="fas fa-search" />
+          </button>
+        </form>
+      </div>
     );
   }
 }

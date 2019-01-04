@@ -1,0 +1,47 @@
+/*============================
+		    LAYOUT
+=============================*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div.header {
+  grid-area: header;
+  min-height: 8rem;
+  z-index: 1200;
+  width: 100vw;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.header > header {
+  width: 100vw;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.main {
+  grid-area: main;
+}
+.aside-left {
+  grid-area: aside-l;
+}
+
+.aside-right {
+  grid-area: aside-r;
+}
+
+.app {
+  min-height: 100vh;
+  max-width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 90vw 1fr;
+  grid-template-rows: 8rem 1fr;
+  grid-template-areas:
+    "header header header"
+    "aside-l main aside-r";
+}

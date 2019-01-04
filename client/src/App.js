@@ -4,12 +4,12 @@ import axios from "axios";
 import Header from "./components/generic/Header";
 import Main from "./components/generic/Main";
 import Aside from "./components/generic/Aside";
-// import CSSGrid from "./components/generic/CSSGrid";
 
 import SearchBar from "./components/SearchBar";
 import CardList from "./components/CardList";
 
-import "./app.css";
+import "./styles/layout.css";
+import "./styles/colors.css";
 
 class App extends Component {
   constructor(props) {

@@ -1,0 +1,27 @@
+/*============================
+		    COLORS
+=============================*/
+
+.header {
+  border-bottom: 1px solid black;
+  background-color: darkgrey;
+}
+
+.main {
+  color: red;
+  background-color: lightgrey;
+}
+
+.aside {
+  color: red;
+  background-color: grey;
+}
+
+.aside.header {
+  color: red;
+  background-color: darkgrey;
+}
+
+.search-input {
+  background-color: lightgrey;
+}
