@@ -10,6 +10,23 @@
   padding: 1rem;
   font-size: 1.5rem;
   border-radius: 2rem;
+  transition: background-color 1s ease;
+}
+input:focus {
+  outline: 0;
+  background-color: white;
+}
+
+input:hover {
+  background-color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color white ease-in-out 0s;
 }
 
 .search-button {
@@ -24,4 +41,11 @@
 
 .fas {
   font-size: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.fas:hover {
+  color: red;
+  transform: scale(1.05);
+  cursor: pointer;
 }
