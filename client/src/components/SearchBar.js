@@ -14,6 +14,13 @@ export default class SearchBar extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+  handleFocusAndHover(e) {
+    document.documentElement.style.setProperty("--input-bg", "white");
+  }
+  handleBlur(e) {
+    document.documentElement.style.setProperty("--input-bg", "transparent");
   }
   handleChange(e) {
     const { value } = e.target;
@@ -36,12 +43,16 @@ export default class SearchBar extends Component {
             className="search-input"
             name="ingredient-search"
             id="ingredient-search"
-            type="search"
+            // type="search"
             placeholder="Search for ingredients..."
             aria-label="search for the ingredients you'd like to use"
             autoFocus={true}
             list="suggestions"
             onChange={this.handleChange}
+            onMouseOver={this.handleFocusAndHover}
+            onMouseOut={this.handleBlur}
+            onFocus={this.handleFocusAndHover}
+            onBlur={this.handleBlur}
             value={this.state.value}
           />
           <Datalist id="suggestions" values={this.state.suggestions} />

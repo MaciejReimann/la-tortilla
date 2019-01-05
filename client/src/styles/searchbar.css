@@ -10,8 +10,9 @@
   padding: 1rem;
   font-size: 1.5rem;
   border-radius: 2rem;
-  transition: background-color 1s ease;
+  transition: background-color 0.3s ease;
 }
+
 input:focus {
   outline: 0;
   background-color: white;
@@ -26,7 +27,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   -webkit-text-fill-color: black;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
-  transition: background-color white ease-in-out 0s;
+  transition: background-color white 1s ease;
 }
 
 .search-button {
@@ -37,6 +38,14 @@ input:-webkit-autofill:focus {
   right: 1rem;
   top: -2rem;
   bottom: -2rem;
+}
+
+:root {
+  --input-bg: transparent;
+}
+
+i {
+  background-color: var(--input-bg);
 }
 
 .fas {
