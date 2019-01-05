@@ -33,11 +33,10 @@ class App extends Component {
     axios
       .get(`/recipes/${query}`)
       .then(res => {
-        console.log(res.data);
-        // this.setState({
-        //   ingredients: nextIngredients,
-        //   recipes: res.data
-        // });
+        this.setState({
+          ingredients: nextIngredients,
+          recipes: res.data
+        });
       })
       .catch(err => {
         this.setState({
