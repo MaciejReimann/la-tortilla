@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       ingredients: [],
-      recipes: []
+      recipes: [],
+      error: ""
     };
     this.handleSearchClick = this.handleSearchClick.bind(this);
   }
@@ -29,15 +30,25 @@ class App extends Component {
     );
     const query = nextIngredients.join();
 
-    axios.get(`/recipes/${query}`).then(res => {
-      this.setState({
-        ingredients: nextIngredients,
-        recipes: res.data
+    axios
+      .get(`/recipes/${query}`)
+      .then(res => {
+        console.log(res.data);
+        // this.setState({
+        //   ingredients: nextIngredients,
+        //   recipes: res.data
+        // });
+      })
+      .catch(err => {
+        this.setState({
+          error: "Sorry, no recipes with chosen ingredients"
+        });
+        console.log(err);
       });
-    });
   }
 
   render() {
+    const { recipes, error } = this.state;
     return (
       <div className="app">
         <Header className="header">
@@ -45,7 +56,7 @@ class App extends Component {
         </Header>
         <Aside className="aside-left" />
         <Main>
-          <CardList data={this.state.recipes} />
+          <CardList data={recipes} error={error} />
         </Main>
         <Aside className="aside-right" />
       </div>

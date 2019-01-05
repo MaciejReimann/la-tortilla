@@ -25,10 +25,11 @@ export default class SearchBar extends Component {
   handleChange(e) {
     const { value } = e.target;
     this.setState(state => ({ value }));
-
-    axios.get(`/suggestions/${value}`).then(res => {
-      this.setState({ suggestions: res.data });
-    });
+    if (value !== "") {
+      axios.get(`/suggestions/${value}`).then(res => {
+        this.setState({ suggestions: res.data });
+      });
+    }
   }
   handleSubmit(e) {
     e.preventDefault();

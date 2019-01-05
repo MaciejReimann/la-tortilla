@@ -20,16 +20,16 @@ router.get("/:ingredients", (req, res) => {
   let page = 1;
   //ingredients (if more than one), coma delimited
 
-  console.log(ingredients);
-
+  let data;
   axios
     .get(`${recipe_puppy}/api/?i=${ingredients}&p=${page}`)
     .then(response => {
-      const data = response.data.results;
+      data = response.data.results;
       res.send(data);
     })
     .catch(err => {
-      console.error(err.message);
+      res.send(data);
+      // console.error(err.message);
     });
 });
 

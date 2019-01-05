@@ -1,8 +1,12 @@
 import React from "react";
 
 import Card from "./generic/Card";
+import ErrorCard from "./ErrorCard";
 
-export default function CardList({ data }) {
+export default function CardList({ data, error }) {
+  if (error) {
+    return <ErrorCard message={error} />;
+  }
   return (
     <div className="card-container">
       {data.map((item, i) => {
