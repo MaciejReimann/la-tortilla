@@ -3,8 +3,6 @@ import axios from "axios";
 
 import Datalist from "./generic/Datalist";
 
-import "../styles/searchbar.css";
-
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);

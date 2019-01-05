@@ -8,7 +8,7 @@ export default function CardList({ data, error }) {
     return <ErrorCard message={error} />;
   }
   return (
-    <div className="card-container">
+    <div className="card-list">
       {data.map((item, i) => {
         const { title, ingredients, href, thumbnail } = item;
         return (

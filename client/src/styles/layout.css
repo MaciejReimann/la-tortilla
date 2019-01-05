@@ -1,6 +1,9 @@
-/*============================
+/*==========================
 		    LAYOUT
-=============================*/
+============================*/
+:root {
+  --card-h: 5rem;
+}
 
 body {
   margin: 0;
@@ -9,7 +12,7 @@ body {
 
 div.header {
   grid-area: header;
-  min-height: 8rem;
+  min-height: var(--card-h);
   z-index: 1200;
   width: 100vw;
   display: grid;
@@ -24,9 +27,10 @@ div.header {
   align-content: center;
 }
 
-.main {
+.main > main {
   grid-area: main;
 }
+
 .aside-left {
   grid-area: aside-l;
 }
@@ -40,8 +44,37 @@ div.header {
   max-width: 100vw;
   display: grid;
   grid-template-columns: 1fr 90vw 1fr;
-  grid-template-rows: 8rem 1fr;
+  grid-template-rows: var(--card-h) 1fr;
   grid-template-areas:
     "header header header"
     "aside-l main aside-r";
+}
+
+.card-list {
+  display: grid;
+  justify-content: center;
+  border: 1px solid blue;
+}
+
+.card {
+  width: 100%;
+  height: var(--card-h);
+  margin: 0.5rem;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: var(--card-h) 1fr;
+  grid-template-rows: 66% 66%;
+  grid-template-areas:
+    "image title"
+    "image tags";
+}
+
+.image {
+  grid-area: image;
+}
+.title {
+  grid-area: title;
+}
+.tags {
+  grid-area: tags;
 }

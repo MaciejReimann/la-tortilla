@@ -10,6 +10,8 @@ import CardList from "./components/CardList";
 
 import "./styles/layout.css";
 import "./styles/colors.css";
+import "./styles/searchbar.css";
+import "./styles/card.css";
 
 class App extends Component {
   constructor(props) {

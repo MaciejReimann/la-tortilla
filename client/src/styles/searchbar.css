@@ -1,14 +1,18 @@
 /*============================
 		    SEARCH BAR
 =============================*/
+:root {
+  --input-bg: transparent;
+}
 
 .search-bar {
   position: relative;
 }
 
 .search-input {
-  padding: 1rem;
-  font-size: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.2rem;
   border-radius: 2rem;
   transition: background-color 0.3s ease;
 }
@@ -38,10 +42,6 @@ input:-webkit-autofill:focus {
   right: 1rem;
   top: -2rem;
   bottom: -2rem;
-}
-
-:root {
-  --input-bg: transparent;
 }
 
 i {
