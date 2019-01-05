@@ -2,19 +2,39 @@
 		    SEARCH BAR
 =============================*/
 :root {
-  --input-bg: transparent;
-}
+  /* --input-bg-col: transparent; */
 
-.search-bar {
-  position: relative;
+  --sm-input-height: calc(var(--sm-card-h) / 2.5);
+  --sm-input-width: calc(
+    var(--sm-main-width) - var(--sm-input-height) - 4 * var(--search-bar-bd-w) -
+      var(--input-l-pad)
+  );
+  --input-l-pad: 0.8rem;
+  --search-bar-bd-rd: calc(var(--sm-input-height) / 2);
+
+  --search-bar-bd-w: 1px;
 }
 
 .search-input {
-  width: 100%;
-  padding: 0.8rem;
+  height: var(--sm-input-height);
+  width: var(--sm-input-width);
   font-size: 1.2rem;
-  border-radius: 2rem;
-  transition: background-color 0.3s ease;
+  padding: 0;
+  padding-left: var(--input-l-pad);
+  border-width: var(--search-bar-bd-w);
+
+  border-radius: var(--search-bar-bd-rd) 0 0 var(--search-bar-bd-rd);
+  transition: background-color 1s ease;
+}
+
+.search-button {
+  outline: 0;
+  height: calc(var(--sm-input-height) + 2 * (var(--search-bar-bd-w)));
+  width: calc(var(--sm-input-height) + 2 * (var(--search-bar-bd-w)));
+  border-width: var(--search-bar-bd-w);
+  border-radius: 0 var(--search-bar-bd-rd) var(--search-bar-bd-rd) 0;
+  padding: 0;
+  padding-right: 0.5rem;
 }
 
 input:focus {
@@ -34,23 +54,13 @@ input:-webkit-autofill:focus {
   transition: background-color white 1s ease;
 }
 
-.search-button {
-  border: none;
-  background-color: transparent;
-  display: block;
-  position: absolute;
-  right: 1rem;
-  top: -2rem;
-  bottom: -2rem;
-}
-
 i {
-  background-color: var(--input-bg);
+  /* background-color: var(--input-bg); */
 }
 
 .fas {
-  font-size: 1.5rem;
-  transition: transform 0.2s;
+  font-size: 1.2rem;
+  /* transition: transform 0.2s; */
 }
 
 .fas:hover {

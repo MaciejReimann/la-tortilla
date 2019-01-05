@@ -2,7 +2,9 @@
 		    LAYOUT
 ============================*/
 :root {
-  --card-h: 5rem;
+  --sm-card-h: 6rem;
+  --sm-side-margin: 6vw;
+  --sm-main-width: calc(100vw - (2 * var(--sm-side-margin)));
 }
 
 body {
@@ -10,9 +12,9 @@ body {
   padding: 0;
 }
 
-div.header {
+.header {
   grid-area: header;
-  min-height: var(--card-h);
+  min-height: var(--sm-card-h);
   z-index: 1200;
   width: 100vw;
   display: grid;
@@ -20,14 +22,13 @@ div.header {
   align-content: center;
 }
 
-.header > header {
-  width: 100vw;
-  display: grid;
-  justify-content: center;
-  align-content: center;
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
 }
 
-.main > main {
+.main {
   grid-area: main;
 }
 
@@ -43,8 +44,8 @@ div.header {
   min-height: 100vh;
   max-width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 90vw 1fr;
-  grid-template-rows: var(--card-h) 1fr;
+  grid-template-columns: var(--sm-side-margin) 1fr var(--sm-side-margin);
+  grid-template-rows: var(--sm-card-h) 1fr;
   grid-template-areas:
     "header header header"
     "aside-l main aside-r";
@@ -58,11 +59,11 @@ div.header {
 
 .card {
   width: 100%;
-  height: var(--card-h);
+  height: var(--sm-card-h);
   margin: 0.5rem;
   justify-self: center;
   display: grid;
-  grid-template-columns: var(--card-h) 1fr;
+  grid-template-columns: var(--sm-card-h) 1fr;
   grid-template-rows: 66% 66%;
   grid-template-areas:
     "image title"

@@ -35,31 +35,31 @@ export default class SearchBar extends Component {
   }
   render() {
     return (
-      <div className="search-bar">
-        <form onSubmit={this.handleSubmit} role="search">
-          <label htmlFor="ingredient-search" />
-          <input
-            className="search-input"
-            name="ingredient-search"
-            id="ingredient-search"
-            // type="search"
-            placeholder="Search for ingredients..."
-            aria-label="search for the ingredients you'd like to use"
-            autoFocus={true}
-            list="suggestions"
-            onChange={this.handleChange}
-            onMouseOver={this.handleFocusAndHover}
-            onMouseOut={this.handleBlur}
-            onFocus={this.handleFocusAndHover}
-            onBlur={this.handleBlur}
-            value={this.state.value}
-          />
-          <Datalist id="suggestions" values={this.state.suggestions} />
-          <button className="search-button">
-            <i className="fas fa-search" />
-          </button>
-        </form>
-      </div>
+      <form className="search-bar" onSubmit={this.handleSubmit} role="search">
+        {/* <div className="search-bar"> */}
+        <label htmlFor="ingredient-search" />
+        <input
+          className="search-input"
+          name="ingredient-search"
+          id="ingredient-search"
+          // type="search"
+          placeholder="Search for ingredients..."
+          aria-label="search for the ingredients you'd like to use"
+          autoFocus={true}
+          list="suggestions"
+          onChange={this.handleChange}
+          onMouseOver={this.handleFocusAndHover}
+          onMouseOut={this.handleBlur}
+          onFocus={this.handleFocusAndHover}
+          onBlur={this.handleBlur}
+          value={this.state.value}
+        />
+        <Datalist id="suggestions" values={this.state.suggestions} />
+        <button className="search-button">
+          <i className="fas fa-search" />
+        </button>
+        {/* </div> */}
+      </form>
     );
   }
 }
