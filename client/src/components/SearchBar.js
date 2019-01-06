@@ -23,7 +23,8 @@ export default class SearchBar extends Component {
   handleChange(e) {
     const { value } = e.target;
     this.setState(state => ({ value }));
-    if (value !== "") {
+    // TODO: value is among suggestions
+    if (value !== "" && this.state.suggestions.length === 0) {
       axios.get(`/suggestions/${value}`).then(res => {
         this.setState({ suggestions: res.data });
       });
@@ -36,13 +37,12 @@ export default class SearchBar extends Component {
   render() {
     return (
       <form className="search-bar" onSubmit={this.handleSubmit} role="search">
-        {/* <div className="search-bar"> */}
         <label htmlFor="ingredient-search" />
         <input
           className="search-input"
           name="ingredient-search"
           id="ingredient-search"
-          // type="search"
+          type="search"
           placeholder="Search for ingredients..."
           aria-label="search for the ingredients you'd like to use"
           autoFocus={true}
@@ -58,7 +58,6 @@ export default class SearchBar extends Component {
         <button className="search-button">
           <i className="fas fa-search" />
         </button>
-        {/* </div> */}
       </form>
     );
   }
