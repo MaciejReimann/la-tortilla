@@ -10,7 +10,7 @@ export default function RecipeCard({ title, tags, src, href }) {
       <SquaredImage src={src} alt={title} />
       <div className="title">{title}</div>
       <div className="tag-list">
-        {[tags].map((name, i) => (
+        {tags.map((name, i) => (
           <IngredientTag key={`${name}_${i}`} content={name} />
         ))}
       </div>

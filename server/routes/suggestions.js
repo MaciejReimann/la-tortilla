@@ -22,6 +22,7 @@ router.get("/:userInput", (req, res) => {
     .get(`${recipe_puppy}/ing.php?q=${userInput}`)
     .then(response => {
       let suggestionsArray = response.data.trim().split(/\n/gm);
+      console.log(response.data);
       res.send(suggestionsArray);
     })
     .catch(err => {
