@@ -23,6 +23,7 @@ export default class SquaredImage extends Component {
   }
 
   cropAndCenter(img, squareCropper) {
+    let output = {};
     const { width, height, style } = img;
     const cropperSizePx = parseInt(getComputedStyle(squareCropper).width);
     // TODO: check if cropper is actually a square...;
@@ -32,11 +33,46 @@ export default class SquaredImage extends Component {
       const scaleRatio = cropperSizePx / height;
       const scaledWidth = width * scaleRatio;
       const centerDiff = cropperSizePx - scaledWidth;
-      // apply styles:
-      style.height = `${cropperSizePx}px`;
-      style.marginLeft = `${centerDiff / 2}px`;
-      console.log(centerDiff);
+      // Save style values:
+      output = {
+        width,
+        height: cropperSizePx,
+        marginLeft: centerDiff / 2,
+        marginTop: 0
+      };
+      // For vertical images:
+    } else {
+      const scaleRatio = cropperSizePx / width;
+      const scaledHeight = height * scaleRatio;
+      const centerDiff = cropperSizePx - scaledHeight;
+      // Save style values:
+      output = {
+        width: cropperSizePx,
+        height,
+        marginLeft: 0,
+        marginTop: centerDiff / 2
+      };
     }
+    // For all images - enlarge a little and center again do crop ugly borders:
+    function removeUglyBorder(
+      borderPx,
+      { width, height, marginLeft, marginTop }
+    ) {
+      marginLeft = marginLeft - borderPx;
+      marginTop = marginTop - borderPx;
+      height = height + 2 * borderPx + 2; // arbitrary value - should be taken from image croper borderWidth
+      width = width + 2 * borderPx + 2; // arbitrary value - should be taken from image croper borderWidth
+      return { width, height, marginLeft, marginTop };
+    }
+    const final = removeUglyBorder(2, output);
+
+    // Apply styles:
+    style.width = `${final.width}px`;
+    style.height = `${final.height}px`;
+    style.marginLeft = `${final.marginLeft}px`;
+    style.marginTop = `${final.marginTop}px`;
+    // Make images visible:
+    style.display = "block";
   }
 
   render() {
@@ -44,12 +80,7 @@ export default class SquaredImage extends Component {
     return (
       <div className="image-container">
         <div ref="cropper" className="image-cropper">
-          <img
-            //   style={{ display: "none" }}
-            ref="image"
-            src={src}
-            alt={alt}
-          />
+          <img style={{ display: "none" }} ref="image" src={src} alt={alt} />
         </div>
       </div>
     );

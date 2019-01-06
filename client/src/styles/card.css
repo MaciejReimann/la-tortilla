@@ -5,7 +5,7 @@
 .card {
   border: 1px solid black;
   background-color: azure;
-  padding: ;
+  /* padding: ; */
 }
 
 .image-container {
@@ -15,7 +15,8 @@
 }
 
 .image-cropper {
-  border: 2px solid rgb(98, 27, 146);
+  border: 1px solid white;
+  border-radius: 5px;
   width: calc(var(--sm-card-h) * 0.7);
   height: calc(var(--sm-card-h) * 0.7);
   overflow: hidden;
