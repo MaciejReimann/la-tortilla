@@ -11,11 +11,13 @@ export default function CardList({ data, error }) {
     <div className="card-list">
       {data.map((item, i) => {
         const { title, ingredients, href, thumbnail } = item;
+        // Make an array out of ingredients:
+        const arrayOfIngredients = ingredients.trim();
         return (
           <RecipeCard
             key={title}
             title={title}
-            tags={ingredients}
+            tags={arrayOfIngredients}
             href={href}
             src={thumbnail}
           />

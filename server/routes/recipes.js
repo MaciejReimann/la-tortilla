@@ -15,11 +15,10 @@ router.get("/:ingredients", (req, res) => {
   const { ingredients } = req.params;
   // TODO: validate user input before sent further
 
-  // TODO: get further pages and concatenate until the content gets repeated, but the first time send immediately
-
+  // TODO: get further pages and concatenate until the content gets repeated;
   let page = 1;
-  //ingredients (if more than one), coma delimited
 
+  // Send the first page immediately:
   let data;
   axios
     .get(`${recipe_puppy}/api/?i=${ingredients}&p=${page}`)
@@ -29,7 +28,8 @@ router.get("/:ingredients", (req, res) => {
     })
     .catch(err => {
       res.send(data);
-      // console.error(err.message);
+      // Error status?
+      console.error(err.message);
     });
 });
 
