@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./generic/Card";
+import RecipeCard from "./RecipeCard";
 import ErrorCard from "./ErrorCard";
 
 export default function CardList({ data, error }) {
@@ -12,7 +12,7 @@ export default function CardList({ data, error }) {
       {data.map((item, i) => {
         const { title, ingredients, href, thumbnail } = item;
         return (
-          <Card
+          <RecipeCard
             key={title}
             title={title}
             tags={ingredients}

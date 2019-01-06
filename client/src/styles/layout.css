@@ -2,6 +2,7 @@
 		    LAYOUT
 ============================*/
 :root {
+  --sm-card-img: 5rem;
   --sm-card-h: 6rem;
   --sm-side-margin: 6vw;
   --sm-main-width: calc(100vw - (2 * var(--sm-side-margin)));
@@ -64,15 +65,18 @@ body {
   justify-self: center;
   display: grid;
   grid-template-columns: var(--sm-card-h) 1fr;
-  grid-template-rows: 66% 66%;
+  grid-template-rows: 66% 33%;
   grid-template-areas:
     "image title"
     "image tags";
 }
 
-.image {
+.image-container {
   grid-area: image;
+  width: var(--sm-card-h);
+  height: var(--sm-card-h);
 }
+
 .title {
   grid-area: title;
 }

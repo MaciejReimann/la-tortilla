@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function Card({ title, tags, src, href }) {
-  console.log(href);
+import SquaredImage from "./SquaredImage";
+
+export default function RecipeCard({ title, tags, src, href }) {
   return (
     <div className="card">
-      <div className="image">{/* <img src={src} alt={title} /> */}</div>
+      <SquaredImage src={src} alt={title} />
       <div className="title">{title}</div>
       <div className="tags">{tags}</div>
     </div>
