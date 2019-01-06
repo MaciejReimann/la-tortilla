@@ -19,10 +19,8 @@
   height: var(--sm-input-height);
   width: var(--sm-input-width);
   font-size: 1.2rem;
-  padding: 0;
-  padding-left: var(--input-l-pad);
+  padding: 0 var(--input-l-pad) 0 var(--input-l-pad);
   border-width: var(--search-bar-bd-w);
-
   border-radius: var(--search-bar-bd-rd) 0 0 var(--search-bar-bd-rd);
   transition: background-color 1s ease;
 }
