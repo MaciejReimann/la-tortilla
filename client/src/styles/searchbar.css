@@ -18,7 +18,7 @@
 .search-input {
   height: var(--sm-input-height);
   width: var(--sm-input-width);
-  max-width: 350px;
+  max-width: 400px;
   font-size: 1.2rem;
   padding: 0 calc(var(--input-l-pad) / 2) 0 var(--input-l-pad);
   border-width: var(--search-bar-bd-w);

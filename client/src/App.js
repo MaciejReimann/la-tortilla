@@ -7,6 +7,7 @@ import Aside from "./components/generic/Aside";
 import Footer from "./components/generic/Footer";
 
 import SearchBar from "./components/SearchBar";
+import TagField from "./components/TagField";
 import CardList from "./components/CardList";
 import ErrorCard from "./components/ErrorCard";
 
@@ -141,10 +142,12 @@ class App extends Component {
         <Header className="header">
           <SearchBar
             value={this.state.searchValue}
+            searchValues={this.state.ingredients}
             onSearchClick={this.handleSearchClick}
             onValueChange={this.updateSearchValue}
           />
         </Header>
+        <TagField tags={this.state.ingredients} />
         <Aside className="aside-left" />
         <Main>{renderMain()}</Main>
         <Aside className="aside-right" />
