@@ -27,6 +27,7 @@ class App extends Component {
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleAddSearchQuery = this.handleAddSearchQuery.bind(this);
   }
 
   // shouldComponentUpdate(nextProps, nextState) {
@@ -46,6 +47,8 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
+
+  handleAddSearchQuery() {}
 
   fetchRecipes(value, p) {
     this.setState({ loading: true });
@@ -97,34 +100,50 @@ class App extends Component {
     const welcome = ingredients.length === 0 && recipes.length === 0;
     const noRecipes = ingredients.length !== 0 && recipes.length === 0;
 
-    const spinnerComponent = <div>Loading...</div>;
-    const errorComponent = <div>{error}</div>;
-    const welcomeComponent = (
-      <div className="welcome">
-        <i className="welcome-icon fas fa-utensils" />
-      </div>
-    );
-    const noRecipesComponent = <ErrorCard />;
-    const recipesList = (
-      <CardList data={recipes} addSearchItem={this.handleAddSearchQuery} />
-    );
+    function renderMain() {
+      let content;
+      if (welcome) {
+        content = (
+          <div className="welcome">
+            <i className="welcome-icon fas fa-utensils" />
+          </div>
+        );
+      } else if (error) {
+        content = <div>{error}</div>;
+      } else if (noRecipes) {
+        content = <ErrorCard />;
+      } else if (recipes) {
+        if (loading) {
+          content = (
+            <div>
+              <div className="loading">
+                <i className="welcome-icon fas fa-utensils" />
+              </div>{" "}
+              <CardList
+                data={recipes}
+                addSearchItem={() => this.handleAddSearchQuery.bind(this)}
+              />
+            </div>
+          );
+        } else {
+          content = (
+            <CardList
+              data={recipes}
+              addSearchItem={() => this.handleAddSearchQuery.bind(this)}
+            />
+          );
+        }
+      }
+      return content;
+    }
+
     return (
       <div className="app">
         <Header className="header">
           <SearchBar onSearchClick={this.fetchRecipes} />
         </Header>
         <Aside className="aside-left" />
-        <Main>
-          {loading
-            ? spinnerComponent
-            : error
-            ? errorComponent
-            : welcome
-            ? welcomeComponent
-            : noRecipes
-            ? noRecipesComponent
-            : recipesList}
-        </Main>
+        <Main>{renderMain()}</Main>
         <Aside className="aside-right" />
         <Footer ref="footer" className="invisible-footer" />
       </div>
