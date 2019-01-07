@@ -9,7 +9,7 @@ export default function RecipeCard({ title, tags, src, href, onTagClick }) {
     <div className="card">
       <SquaredImage src={src} alt={title} href={href}>
         <div className="link">
-          <i className="fas fa-external-link-alt" />
+          <i className="link-icon fas fa-external-link-alt" />
         </div>
       </SquaredImage>
       <div className="title">{title}</div>

@@ -65,8 +65,8 @@ export default class SquaredImage extends Component {
     ) {
       marginLeft = marginLeft - borderPx;
       marginTop = marginTop - borderPx;
-      height = height + 2 * borderPx + 2; // arbitrary value - should be taken from image croper borderWidth
-      width = width + 2 * borderPx + 2; // arbitrary value - should be taken from image croper borderWidth
+      height = height + 2 * borderPx;
+      width = width + 2 * borderPx;
       return { width, height, marginLeft, marginTop };
     }
     const final = removeUglyBorder(2, output);

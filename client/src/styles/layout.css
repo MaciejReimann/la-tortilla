@@ -14,6 +14,7 @@ body {
 }
 
 .header {
+  position: fixed;
   grid-area: header;
   min-height: var(--sm-card-h);
   z-index: 1200;
@@ -77,10 +78,11 @@ body {
     "aside-l main aside-r";
 }
 
+/* Mobile-first approach; could be planned differently on larger screeens */
 .card-list {
   display: grid;
   justify-content: center;
-  border: 1px solid blue;
+  padding-top: 1rem;
 }
 
 .card {
@@ -104,7 +106,9 @@ body {
 
 .title {
   grid-area: title;
+  padding: 0.3rem 0.3rem 0 0;
 }
+
 .tags {
   grid-area: tags;
 }

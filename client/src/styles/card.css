@@ -3,24 +3,26 @@
 =============================*/
 
 .card {
-  border: 1px solid black;
-  background-color: azure;
-  /* padding: ; */
+  border-radius: 5px;
 }
 
+/* Center image cropper verically and horizontally */
 .image-container {
   display: grid;
   justify-content: center;
   align-content: center;
 }
-
+/* Specify the padding inside image-container, i.e. the cropper; 
+dimensions -> from there js will calculate the image size and position */
 .image-cropper {
-  border: 1px solid white;
   border-radius: 5px;
-  width: calc(var(--sm-card-h) * 0.7);
-  height: calc(var(--sm-card-h) * 0.7);
+  width: calc(var(--sm-card-h) * 0.8);
+  height: calc(var(--sm-card-h) * 0.8);
   overflow: hidden;
   position: relative;
+}
+.image-cropper > img:hover {
+  cursor: pointer;
 }
 
 .link {
@@ -29,18 +31,16 @@
   bottom: 0.1rem;
 }
 
-.fa-external-link-alt {
+.link-icon {
   color: hsla(0, 0%, 9%, 0.678);
 }
 
 .title {
-  padding-left: 0.4rem;
-  border: 1px solid pink;
   font-size: 1.2rem;
 }
 
 .tag-list {
-  border: 1px solid rgb(63, 177, 29);
+  /* border: 1px solid rgb(63, 177, 29); */
 }
 
 .tag {
