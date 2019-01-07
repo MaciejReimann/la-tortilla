@@ -39,7 +39,7 @@ body {
   top: 5rem;
   left: var(--sm-side-margin);
   grid-area: tag-field;
-  width: var(--sm-main-width);
+  max-width: var(--sm-main-width);
   min-height: 3rem;
   padding-left: 0.5rem;
   /* display: grid;
