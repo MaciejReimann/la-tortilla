@@ -3,9 +3,9 @@ import React from "react";
 import RecipeCard from "./RecipeCard";
 import ErrorCard from "./ErrorCard";
 
-export default function CardList({ data, error }) {
-  if (error) {
-    return <ErrorCard message={error} />;
+export default function CardList({ data, addSearchItem }) {
+  if (data.length < 1) {
+    return <ErrorCard />;
   }
   return (
     <div className="card-list">
@@ -15,11 +15,12 @@ export default function CardList({ data, error }) {
         const arrayOfIngredients = ingredients.split(",").map(i => i.trim());
         return (
           <RecipeCard
-            key={title}
+            key={`${title}_${i}`}
             title={title}
             tags={arrayOfIngredients}
             href={href}
             src={thumbnail}
+            onTagClick={addSearchItem}
           />
         );
       })}
