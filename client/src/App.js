@@ -19,26 +19,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allFetched: false,
-      loading: false,
+      error: "",
+      searchValue: "",
+      allRecipesFetched: false,
+      isLoading: false,
       ingredients: [],
-      recipes: [],
-      error: ""
+      recipes: []
     };
     this.fetchRecipes = this.fetchRecipes.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
-    this.handleAddSearchQuery = this.handleAddSearchQuery.bind(this);
+    this.updateSearchValue = this.updateSearchValue.bind(this);
+    this.handleTagClick = this.handleTagClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   const lastIngredientBefore = this.state.ingredients[
-  //     this.state.ingredients.length - 1
-  //   ];
-  //   const lastIngredientAfter =
-  //     nextState.ingredients[nextState.ingredients.length - 1];
-  //   const areIngredientsNew = lastIngredientBefore === lastIngredientAfter;
-  //   return !this.state.allFetched && !areIngredientsNew;
-  // }
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
@@ -48,12 +41,24 @@ class App extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleAddSearchQuery() {}
+  updateSearchValue(searchValue) {
+    this.setState({ searchValue });
+  }
+
+  handleTagClick(value) {
+    this.updateSearchValue(value);
+    console.log(value);
+  }
+
+  handleSearchClick(e) {
+    e.preventDefault();
+    this.fetchRecipes(this.state.searchValue, 1);
+  }
 
   fetchRecipes(value, p) {
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
     if (p === 1) {
-      this.setState({ allFetched: false });
+      this.setState({ allRecipesFetched: false });
     }
 
     // Filter out ingredient duplicates before updating the state:
@@ -73,34 +78,34 @@ class App extends Component {
           // const handleTooLongWaiting = () => new Promise((res, rej) => res())
         }
         this.setState({
-          loading: false,
+          isLoading: false,
           ingredients: filiteredDuplicates,
-          recipes: res.data
+          recipes: res.data,
+          searchValue: ""
         });
       })
       .catch(error => {
         console.log(error);
         this.setState({
-          loading: false,
+          isLoading: false,
           error: `Sorry, we're having some problems on LaTortilla servers`
         });
       });
   }
 
   handleScroll() {
-    // This should not be here as it causes irritating delay on scroll;
-    if (!this.state.allFetched) {
+    if (!this.state.allRecipesFetched) {
       this.fetchRecipes(encodeURI(this.state.ingredients.join()), 2);
-      this.setState({ allFetched: true });
+      this.setState({ allRecipesFetched: true });
     }
   }
 
   render() {
-    const { loading, ingredients, recipes, error } = this.state;
+    const { isLoading, ingredients, recipes, error } = this.state;
     const welcome = ingredients.length === 0 && recipes.length === 0;
     const noRecipes = ingredients.length !== 0 && recipes.length === 0;
 
-    function renderMain() {
+    const renderMain = () => {
       let content;
       if (welcome) {
         content = (
@@ -113,34 +118,32 @@ class App extends Component {
       } else if (noRecipes) {
         content = <ErrorCard />;
       } else if (recipes) {
-        if (loading) {
+        if (isLoading) {
           content = (
             <div>
               <div className="loading">
                 <i className="welcome-icon fas fa-utensils" />
               </div>{" "}
-              <CardList
-                data={recipes}
-                addSearchItem={() => this.handleAddSearchQuery.bind(this)}
-              />
+              <CardList data={recipes} addSearchItem={this.handleTagClick} />
             </div>
           );
         } else {
           content = (
-            <CardList
-              data={recipes}
-              addSearchItem={() => this.handleAddSearchQuery.bind(this)}
-            />
+            <CardList data={recipes} addSearchItem={this.handleTagClick} />
           );
         }
       }
       return content;
-    }
+    };
 
     return (
       <div className="app">
         <Header className="header">
-          <SearchBar onSearchClick={this.fetchRecipes} />
+          <SearchBar
+            value={this.state.searchValue}
+            onSearchClick={this.handleSearchClick}
+            onValueChange={this.updateSearchValue}
+          />
         </Header>
         <Aside className="aside-left" />
         <Main>{renderMain()}</Main>

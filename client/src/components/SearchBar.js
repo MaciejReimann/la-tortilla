@@ -7,40 +7,28 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
       suggestions: []
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleBlur = this.handleBlur.bind(this);
   }
 
-  // handleFocusAndHover(e) {
-  //   document.documentElement.style.setProperty("--input-bg", "white");
-  // }
-  // handleBlur(e) {
-  //   document.documentElement.style.setProperty("--input-bg", "transparent");
-  // }
   handleChange(e) {
     const { value } = e.target;
-    this.setState({ value });
-    // Prevent from displaying suggestion after inital selection:
-    const noNeedForSuggestions = !this.state.suggestions.some(
-      suggestion => suggestion === value
-    );
-    if (value.trim() !== "" && noNeedForSuggestions) {
+    this.props.onValueChange(value);
+    // TODO: Prevent from displaying suggestion after inital selection:
+    if (value.trim() !== "") {
       axios.get(`/suggestions/${value}`).then(res => {
         this.setState({ suggestions: res.data });
       });
     }
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.onSearchClick(this.state.value, 1);
-  }
   render() {
     return (
-      <form className="search-bar" onSubmit={this.handleSubmit} role="search">
+      <form
+        className="search-bar"
+        onSubmit={this.props.onSearchClick}
+        role="search"
+      >
         <label htmlFor="ingredient-search" />
         <input
           className="search-input"
@@ -52,11 +40,7 @@ export default class SearchBar extends Component {
           autoFocus={true}
           list="suggestions"
           onChange={this.handleChange}
-          // onMouseOver={this.handleFocusAndHover}
-          // onMouseOut={this.handleBlur}
-          // onFocus={this.handleFocusAndHover}
-          // onBlur={this.handleBlur}
-          value={this.state.value}
+          value={this.props.value}
         />
         <Datalist id="suggestions" values={this.state.suggestions} />
         <button type="submit" className="search-button">
