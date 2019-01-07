@@ -7,18 +7,19 @@ const axios = require("axios");
 // @access  Public
 router.get("/test", (req, res) => res.json({ msg: "Recipes route works!" }));
 
-// @route   GET recipes/:ingredients
-// @desc    Get list of recipes
+// @route   GET recipes/:ingredients/:p
+// @desc    Get list of recipes for either first page, or next X pages
 // @access  Public
 router.get("/:query/:p", (req, res) => {
   const { recipe_puppy } = require("../constants/URLs");
   const { query, p } = req.params;
-  console.log(p === "1");
-  // TODO: validate user input before sent further,
+  // CONSIDER: validate user input before sent further,
   // In such case, return new query string (encoded)
   // This could be made by comparing query to suggestions...
 
-  // TODO: get further pages and concatenate until the content gets repeated;
+  // Assign arbitrarily maximum pages per request:
+  const countSubsequentPages = 10;
+  // Initialize empty array in which incoming data will be stored:
   let data = [];
   // Send the first page immediately:
   if (p === "1") {
@@ -32,16 +33,19 @@ router.get("/:query/:p", (req, res) => {
         console.error(err);
       });
   } else {
-    for (let i = 2; i < 5; i++) {
+    for (let i = 2; i <= countSubsequentPages; i++) {
       axios
         .get(`${recipe_puppy}/api/?i=${query}&p=${i}`)
         .then(response => {
           data = data.concat(response.data.results);
-          if (i === 4) {
+          if (i === countSubsequentPages) {
             res.send(data);
           }
         })
         .catch(err => {
+          console.error(
+            `:::ERROR FETCHING PAGE ${i} FROM THE API:::\n(probably fetched all pages for given ingredients)`
+          );
           console.error(err);
         });
     }
