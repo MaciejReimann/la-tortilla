@@ -60,7 +60,7 @@ export default class SearchBar extends Component {
         />
         <Datalist id="suggestions" values={this.state.suggestions} />
         <button type="submit" className="search-button">
-          <i className="fas fa-search" />
+          <i className="search-icon fas fa-search" />
         </button>
       </form>
     );

@@ -39,3 +39,11 @@
 .aside-right {
   background-color: var(--darkest);
 }
+
+.welcome {
+  background-color: transparent;
+}
+
+.welcome-icon {
+  color: var(--darker);
+}

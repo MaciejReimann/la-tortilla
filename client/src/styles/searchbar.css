@@ -18,7 +18,7 @@
 .search-input {
   height: var(--sm-input-height);
   width: var(--sm-input-width);
-  max-width: 300px;
+  max-width: 350px;
   font-size: 1.2rem;
   padding: 0 var(--input-l-pad) 0 var(--input-l-pad);
   border-width: var(--search-bar-bd-w);
@@ -47,12 +47,12 @@ input:-webkit-autofill:focus {
   transition: background-color white 1s ease;
 }
 
-.fas {
+.search-icon {
   font-size: 1.2rem;
   transition: font-size 0.1s ease;
 }
 
-.fas:hover {
+.search-icon:hover {
   color: white;
   font-size: 1.3rem;
 }

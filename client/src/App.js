@@ -99,7 +99,11 @@ class App extends Component {
 
     const spinnerComponent = <div>Loading...</div>;
     const errorComponent = <div>{error}</div>;
-    const welcomeComponent = <div>Welcome!</div>;
+    const welcomeComponent = (
+      <div className="welcome">
+        <i className="welcome-icon fas fa-utensils" />
+      </div>
+    );
     const noRecipesComponent = <ErrorCard />;
     const recipesList = (
       <CardList data={recipes} addSearchItem={this.handleAddSearchQuery} />
