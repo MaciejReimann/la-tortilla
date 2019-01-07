@@ -20,6 +20,17 @@
   width: calc(var(--sm-card-h) * 0.7);
   height: calc(var(--sm-card-h) * 0.7);
   overflow: hidden;
+  position: relative;
+}
+
+.link {
+  position: absolute;
+  left: 0.15rem;
+  bottom: 0.1rem;
+}
+
+.fa-external-link-alt {
+  color: hsla(0, 0%, 9%, 0.678);
 }
 
 .title {

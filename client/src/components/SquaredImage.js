@@ -76,11 +76,12 @@ export default class SquaredImage extends Component {
   }
 
   render() {
-    const { src, alt } = this.props;
+    const { src, alt, children } = this.props;
     return (
       <div className="image-container">
         <div ref="cropper" className="image-cropper">
           <img style={{ display: "none" }} ref="image" src={src} alt={alt} />
+          {children}
         </div>
       </div>
     );
