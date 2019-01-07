@@ -12,19 +12,23 @@ export default class SearchBar extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    // this.handleBlur = this.handleBlur.bind(this);
   }
-  handleFocusAndHover(e) {
-    document.documentElement.style.setProperty("--input-bg", "white");
-  }
-  handleBlur(e) {
-    document.documentElement.style.setProperty("--input-bg", "transparent");
-  }
+
+  // handleFocusAndHover(e) {
+  //   document.documentElement.style.setProperty("--input-bg", "white");
+  // }
+  // handleBlur(e) {
+  //   document.documentElement.style.setProperty("--input-bg", "transparent");
+  // }
   handleChange(e) {
     const { value } = e.target;
-    this.setState(state => ({ value }));
-    // TODO: value is among suggestions
-    if (value !== "" && this.state.suggestions.length === 0) {
+    this.setState({ value });
+    // Prevent from displaying suggestion after inital selection:
+    const noNeedForSuggestions = this.state.suggestions.every(
+      suggestion => suggestion !== value
+    );
+    if (value.trim() !== "" && noNeedForSuggestions) {
       axios.get(`/suggestions/${value}`).then(res => {
         this.setState({ suggestions: res.data });
       });
@@ -48,14 +52,14 @@ export default class SearchBar extends Component {
           autoFocus={true}
           list="suggestions"
           onChange={this.handleChange}
-          onMouseOver={this.handleFocusAndHover}
-          onMouseOut={this.handleBlur}
-          onFocus={this.handleFocusAndHover}
-          onBlur={this.handleBlur}
+          // onMouseOver={this.handleFocusAndHover}
+          // onMouseOut={this.handleBlur}
+          // onFocus={this.handleFocusAndHover}
+          // onBlur={this.handleBlur}
           value={this.state.value}
         />
         <Datalist id="suggestions" values={this.state.suggestions} />
-        <button className="search-button">
+        <button type="submit" className="search-button">
           <i className="fas fa-search" />
         </button>
       </form>
