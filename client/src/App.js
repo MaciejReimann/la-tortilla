@@ -17,39 +17,51 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       ingredients: [],
       recipes: [],
       error: ""
     };
     this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleAddSearchQuery = this.handleAddSearchQuery.bind(this);
+  }
+
+  handleAddSearchQuery(value) {
+    console.log(value);
   }
 
   handleSearchClick(value) {
-    // Query must be a string of (unique) ingredients,
-    // coma separated, no spaces between;
-    const nextIngredients = [...this.state.ingredients, value].filter(
+    this.setState({ loading: true });
+
+    // Filter out ingredient duplicates before updating the state:
+    const filiteredDuplicates = [...this.state.ingredients, value].filter(
       (item, i, arr) => arr.indexOf(item) === i
     );
-    const query = nextIngredients.join();
-
+    // Transform the ingredients array into a string:
+    const ingredentsQuery = filiteredDuplicates.join();
+    // Encode the query:
+    const encodedQuery = encodeURI(ingredentsQuery);
+    // Fetch the recipes:
     axios
-      .get(`/recipes/${query}`)
+      .get(`/recipes/${encodedQuery}`)
       .then(res => {
         this.setState({
-          ingredients: nextIngredients,
+          loading: false,
+          ingredients: filiteredDuplicates,
           recipes: res.data
         });
       })
       .catch(err => {
-        this.setState({
-          error: "Sorry, no recipes with chosen ingredients"
-        });
         console.log(err);
+        this.setState({
+          error: err
+        });
       });
   }
 
   render() {
-    const { recipes, error } = this.state;
+    const { loading, recipes, error } = this.state;
+    const spinner = <div>Loading...</div>;
     return (
       <div className="app">
         <Header className="header">
@@ -57,7 +69,15 @@ class App extends Component {
         </Header>
         <Aside className="aside-left" />
         <Main>
-          <CardList data={recipes} error={error} />
+          {loading ? (
+            spinner
+          ) : (
+            <CardList
+              data={recipes}
+              error={error}
+              addSearchItem={this.handleAddSearchQuery}
+            />
+          )}
         </Main>
         <Aside className="aside-right" />
       </div>
