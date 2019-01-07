@@ -20,7 +20,7 @@
   width: var(--sm-input-width);
   max-width: 350px;
   font-size: 1.2rem;
-  padding: 0 var(--input-l-pad) 0 var(--input-l-pad);
+  padding: 0 calc(var(--input-l-pad) / 2) 0 var(--input-l-pad);
   border-width: var(--search-bar-bd-w);
   border-radius: var(--search-bar-bd-rd) 0 0 var(--search-bar-bd-rd);
   border-width: 2px;
