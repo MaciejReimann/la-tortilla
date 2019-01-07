@@ -33,4 +33,9 @@
   background-color: lightgrey;
   margin-right: 0.2rem;
   margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.tag:hover {
+  border-color: black;
 }

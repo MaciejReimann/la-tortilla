@@ -21,6 +21,7 @@ dimensions -> from there js will calculate the image size and position */
   overflow: hidden;
   position: relative;
 }
+
 .image-cropper > img:hover {
   cursor: pointer;
 }
