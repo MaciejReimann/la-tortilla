@@ -30,8 +30,9 @@ class App extends Component {
     this.fetchRecipes = this.fetchRecipes.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.updateSearchValue = this.updateSearchValue.bind(this);
-    this.handleTagClick = this.handleTagClick.bind(this);
+    this.addIngredient = this.addIngredient.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
   }
 
   componentDidMount() {
@@ -42,11 +43,16 @@ class App extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
+  removeIngredient(value) {
+    const nextIngredients = this.state.ingredients.filter(ing => ing !== value);
+    this.setState({ ingredients: nextIngredients });
+  }
+
   updateSearchValue(searchValue) {
     this.setState({ searchValue });
   }
 
-  handleTagClick(value) {
+  addIngredient(value) {
     this.updateSearchValue(value);
     console.log(value);
   }
@@ -125,12 +131,12 @@ class App extends Component {
               <div className="loading">
                 <i className="welcome-icon fas fa-utensils" />
               </div>{" "}
-              <CardList data={recipes} addSearchItem={this.handleTagClick} />
+              <CardList data={recipes} addSearchItem={this.addIngredient} />
             </div>
           );
         } else {
           content = (
-            <CardList data={recipes} addSearchItem={this.handleTagClick} />
+            <CardList data={recipes} addSearchItem={this.addIngredient} />
           );
         }
       }
@@ -147,7 +153,10 @@ class App extends Component {
             onValueChange={this.updateSearchValue}
           />
         </Header>
-        <TagField tags={this.state.ingredients} />
+        <TagField
+          tags={this.state.ingredients}
+          onTagClick={this.removeIngredient}
+        />
         <Aside className="aside-left" />
         <Main>{renderMain()}</Main>
         <Aside className="aside-right" />

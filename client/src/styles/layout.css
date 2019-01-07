@@ -41,7 +41,7 @@ body {
   grid-area: tag-field;
   width: var(--sm-main-width);
   min-height: 3rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: stretch;

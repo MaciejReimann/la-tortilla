@@ -42,11 +42,3 @@ dimensions -> from there js will calculate the image size and position */
 .tag-list {
   /* border: 1px solid rgb(63, 177, 29); */
 }
-
-.tag {
-  font-size: 0.7rem;
-}
-
-.tag-icon {
-  font-size: 0.7rem;
-}
