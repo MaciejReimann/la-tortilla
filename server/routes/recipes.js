@@ -18,7 +18,7 @@ router.get("/:query/:p", (req, res) => {
   // This could be made by comparing query to suggestions...
 
   // Assign arbitrarily maximum pages per request:
-  const countSubsequentPages = 10;
+  const countSubsequentPages = 5;
   // Initialize empty array in which incoming data will be stored:
   let data = [];
   // Send the first page immediately:

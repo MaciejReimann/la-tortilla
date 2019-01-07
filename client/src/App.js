@@ -96,7 +96,7 @@ class App extends Component {
 
   handleScroll() {
     if (!this.state.allRecipesFetched) {
-      this.fetchRecipes(encodeURI(this.state.ingredients.join()), 2);
+      this.fetchRecipes(this.state.ingredients.slice(-1)[0], 2);
       this.setState({ allRecipesFetched: true });
     }
   }
