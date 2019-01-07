@@ -62,3 +62,8 @@
 .image-cropper {
   box-shadow: 2px 3px 6px #525252;
 }
+
+.tag-list {
+  box-shadow: inset 2px 3px 6px white;
+  overflow: hidden;
+}

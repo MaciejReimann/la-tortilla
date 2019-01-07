@@ -41,11 +41,10 @@ body {
   grid-area: tag-field;
   width: var(--sm-main-width);
   min-height: 3rem;
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  /* padding-top: 0.5rem; */
+  padding-left: 0.5rem;
+  /* display: grid;
+  justify-content: start;
+  align-content: center; */
 }
 
 .main {
@@ -111,7 +110,7 @@ body {
   justify-self: center;
   display: grid;
   grid-template-columns: var(--sm-card-h) 1fr;
-  grid-template-rows: 66% 33%;
+  grid-template-rows: 50% 50%;
   grid-template-areas:
     "image title"
     "image tags";
@@ -125,7 +124,7 @@ body {
 
 .title {
   grid-area: title;
-  padding: 0.3rem 0.3rem 0 0;
+  padding: 0.5rem 0.3rem 0 0;
 }
 
 .tags {

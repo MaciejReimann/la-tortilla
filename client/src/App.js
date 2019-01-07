@@ -15,6 +15,7 @@ import "./styles/layout.css";
 import "./styles/colors.css";
 import "./styles/searchbar.css";
 import "./styles/card.css";
+import "./styles/tag.css";
 
 class App extends Component {
   constructor(props) {

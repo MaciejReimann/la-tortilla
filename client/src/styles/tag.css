@@ -2,10 +2,35 @@
 		    TAGS
 =============================*/
 
-.tag {
+/* Small tags on the cards */
+.tag-list > .tag {
+  padding-bottom: 0.2rem;
+  font-size: 0.7rem;
+  max-height: 1.2rem;
+  border-radius: 0.6rem;
+  border-width: 2px;
+}
+.tag-list > .tag-icon {
   font-size: 0.7rem;
 }
 
-.tag-icon {
-  font-size: 0.7rem;
+/* Bigger tags under the header */
+.tag-field > .tag {
+  font-size: 0.9rem;
+  max-height: 1.5rem;
+  border-radius: 0.75rem;
+  border-width: 1px;
+}
+.tag-field > .tag-icon > i {
+  font-size: 0.9rem;
+}
+
+.tag > i {
+  color: white;
+}
+
+.tag {
+  background-color: lightgrey;
+  margin-right: 0.2rem;
+  margin-top: 0.2rem;
 }
