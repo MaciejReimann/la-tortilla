@@ -46,6 +46,10 @@ class App extends Component {
     axios
       .get(`/recipes/${encodedQuery}`)
       .then(res => {
+        if (!res.data.length) {
+          // TODO:
+          // const handleTooLongWaiting = () => new Promise((res, rej) => res())
+        }
         this.setState({
           loading: false,
           ingredients: filiteredDuplicates,

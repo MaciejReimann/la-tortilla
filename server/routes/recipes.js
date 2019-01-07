@@ -13,9 +13,9 @@ router.get("/test", (req, res) => res.json({ msg: "Recipes route works!" }));
 router.get("/:query", (req, res) => {
   const { recipe_puppy } = require("../constants/URLs");
   const { query } = req.params;
-  console.log(query);
   // TODO: validate user input before sent further,
   // In such case, return new query string (encoded)
+  // This could be made by comparing query to suggestions...
 
   // TODO: get further pages and concatenate until the content gets repeated;
   let page = 1;
@@ -36,8 +36,6 @@ router.get("/:query", (req, res) => {
 :::::::::::::::::::::::::::::::::::::::::::::::`
       );
     });
-
-  // const handleNoResponse = () => new Promise((res, rej) => res())
 });
 
 module.exports = router;
