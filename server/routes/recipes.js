@@ -10,32 +10,42 @@ router.get("/test", (req, res) => res.json({ msg: "Recipes route works!" }));
 // @route   GET recipes/:ingredients
 // @desc    Get list of recipes
 // @access  Public
-router.get("/:query", (req, res) => {
+router.get("/:query/:p", (req, res) => {
   const { recipe_puppy } = require("../constants/URLs");
-  const { query } = req.params;
+  const { query, p } = req.params;
+  console.log(p === "1");
   // TODO: validate user input before sent further,
   // In such case, return new query string (encoded)
   // This could be made by comparing query to suggestions...
 
   // TODO: get further pages and concatenate until the content gets repeated;
-  let page = 1;
-
+  let data = [];
   // Send the first page immediately:
-  let data;
-  axios
-    .get(`${recipe_puppy}/api/?i=${query}&p=${page}`)
-    .then(response => {
-      data = response.data.results;
-      res.send(data);
-    })
-    .catch(err => {
-      console.error(
-        `:::${err}::: 
-        (probably a 'TOMATO SAUCE ERROR' --- unidentified problem with the Recipe Puppy API):
-        For any known query api responds with [], for <tomato%20sauce> however, it gives an error
-:::::::::::::::::::::::::::::::::::::::::::::::`
-      );
-    });
+  if (p === "1") {
+    axios
+      .get(`${recipe_puppy}/api/?i=${query}&p=${1}`)
+      .then(response => {
+        data = data.concat(response.data.results);
+        res.send(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  } else {
+    for (let i = 2; i < 5; i++) {
+      axios
+        .get(`${recipe_puppy}/api/?i=${query}&p=${i}`)
+        .then(response => {
+          data = data.concat(response.data.results);
+          if (i === 4) {
+            res.send(data);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  }
 });
 
 module.exports = router;
