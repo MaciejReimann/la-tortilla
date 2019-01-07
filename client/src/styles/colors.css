@@ -2,26 +2,40 @@
 		    COLORS
 =============================*/
 
+:root {
+  --darkest: rgb(158, 158, 158);
+  --darker: rgb(214, 216, 215);
+  --lightest: rgb(240, 241, 241);
+}
+
 .header {
   border-bottom: 1px solid black;
-  background-color: darkgrey;
+  background-color: var(--darker);
+}
+
+.search-input {
+  background-color: var(--darker);
+  box-shadow: 2px 3px 6px #525252;
+  transition: background-color 1s ease;
+}
+
+.search-input:focus {
+  outline: 0;
+  background-color: var(--lightest);
+}
+
+.search-button {
+  background-color: var(--darker);
+  border-style: solid;
+  box-shadow: 2px 3px 6px #525252;
 }
 
 .main {
   color: red;
-  background-color: lightgrey;
+  background-color: var(--darkest);
 }
 
-.aside {
-  color: red;
-  background-color: grey;
-}
-
-.aside.header {
-  color: red;
-  background-color: darkgrey;
-}
-
-.search-input {
-  background-color: lightgrey;
+.aside-left,
+.aside-right {
+  background-color: var(--darkest);
 }
