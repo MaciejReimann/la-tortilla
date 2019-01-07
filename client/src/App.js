@@ -7,6 +7,7 @@ import Aside from "./components/generic/Aside";
 
 import SearchBar from "./components/SearchBar";
 import CardList from "./components/CardList";
+import ErrorCard from "./components/ErrorCard";
 
 import "./styles/layout.css";
 import "./styles/colors.css";
@@ -51,17 +52,27 @@ class App extends Component {
           recipes: res.data
         });
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
         this.setState({
-          error: err
+          loading: false,
+          error: `Sorry, we're having some problems on LaTortilla servers`
         });
       });
   }
 
   render() {
-    const { loading, recipes, error } = this.state;
-    const spinner = <div>Loading...</div>;
+    const { loading, ingredients, recipes, error } = this.state;
+    const welcome = ingredients.length === 0 && recipes.length === 0;
+    const noRecipes = ingredients.length !== 0 && recipes.length === 0;
+
+    const spinnerComponent = <div>Loading...</div>;
+    const errorComponent = <div>{error}</div>;
+    const welcomeComponent = <div>Welcome!</div>;
+    const noRecipesComponent = <ErrorCard />;
+    const recipesList = (
+      <CardList data={recipes} addSearchItem={this.handleAddSearchQuery} />
+    );
     return (
       <div className="app">
         <Header className="header">
@@ -69,15 +80,15 @@ class App extends Component {
         </Header>
         <Aside className="aside-left" />
         <Main>
-          {loading ? (
-            spinner
-          ) : (
-            <CardList
-              data={recipes}
-              error={error}
-              addSearchItem={this.handleAddSearchQuery}
-            />
-          )}
+          {loading
+            ? spinnerComponent
+            : error
+            ? errorComponent
+            : welcome
+            ? welcomeComponent
+            : noRecipes
+            ? noRecipesComponent
+            : recipesList}
         </Main>
         <Aside className="aside-right" />
       </div>
