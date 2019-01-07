@@ -25,8 +25,8 @@ export default class SearchBar extends Component {
     const { value } = e.target;
     this.setState({ value });
     // Prevent from displaying suggestion after inital selection:
-    const noNeedForSuggestions = this.state.suggestions.every(
-      suggestion => suggestion !== value
+    const noNeedForSuggestions = !this.state.suggestions.some(
+      suggestion => suggestion === value
     );
     if (value.trim() !== "" && noNeedForSuggestions) {
       axios.get(`/suggestions/${value}`).then(res => {

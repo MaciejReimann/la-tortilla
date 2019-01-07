@@ -6,6 +6,11 @@ export default class SquaredImage extends Component {
     super(props);
     this.cropAndCenter = this.cropAndCenter.bind(this);
     this.loadImage = this.loadImage.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    window.open(this.props.href, "_blank");
   }
 
   componentDidMount() {
@@ -80,7 +85,13 @@ export default class SquaredImage extends Component {
     return (
       <div className="image-container">
         <div ref="cropper" className="image-cropper">
-          <img style={{ display: "none" }} ref="image" src={src} alt={alt} />
+          <img
+            style={{ display: "none" }}
+            ref="image"
+            src={src}
+            alt={alt}
+            onClick={this.handleClick}
+          />
           {children}
         </div>
       </div>
