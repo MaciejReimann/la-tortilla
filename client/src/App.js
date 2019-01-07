@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "./components/generic/Header";
 import Main from "./components/generic/Main";
 import Aside from "./components/generic/Aside";
+import Footer from "./components/generic/Footer";
 
 import SearchBar from "./components/SearchBar";
 import CardList from "./components/CardList";
@@ -18,21 +19,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allFetched: false,
       loading: false,
       ingredients: [],
       recipes: [],
       error: ""
     };
-    this.handleSearchClick = this.handleSearchClick.bind(this);
-    this.handleAddSearchQuery = this.handleAddSearchQuery.bind(this);
+    this.fetchRecipes = this.fetchRecipes.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  handleAddSearchQuery(value) {
-    console.log(value);
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   const lastIngredientBefore = this.state.ingredients[
+  //     this.state.ingredients.length - 1
+  //   ];
+  //   const lastIngredientAfter =
+  //     nextState.ingredients[nextState.ingredients.length - 1];
+  //   const areIngredientsNew = lastIngredientBefore === lastIngredientAfter;
+  //   return !this.state.allFetched && !areIngredientsNew;
+  // }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
   }
 
-  handleSearchClick(value) {
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  fetchRecipes(value, p) {
     this.setState({ loading: true });
+    if (p === 1) {
+      this.setState({ allFetched: false });
+    }
 
     // Filter out ingredient duplicates before updating the state:
     const filiteredDuplicates = [...this.state.ingredients, value].filter(
@@ -44,7 +63,7 @@ class App extends Component {
     const encodedQuery = encodeURI(ingredentsQuery);
     // Fetch the recipes:
     axios
-      .get(`/recipes/${encodedQuery}`)
+      .get(`/recipes/${encodedQuery}/${p}`)
       .then(res => {
         if (!res.data.length) {
           // TODO:
@@ -65,6 +84,14 @@ class App extends Component {
       });
   }
 
+  handleScroll() {
+    // This should not be here as it causes irritating delay on scroll;
+    if (!this.state.allFetched) {
+      this.fetchRecipes(encodeURI(this.state.ingredients.join()), 2);
+      this.setState({ allFetched: true });
+    }
+  }
+
   render() {
     const { loading, ingredients, recipes, error } = this.state;
     const welcome = ingredients.length === 0 && recipes.length === 0;
@@ -80,7 +107,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header className="header">
-          <SearchBar onSearchClick={this.handleSearchClick} />
+          <SearchBar onSearchClick={this.fetchRecipes} />
         </Header>
         <Aside className="aside-left" />
         <Main>
@@ -95,6 +122,7 @@ class App extends Component {
             : recipesList}
         </Main>
         <Aside className="aside-right" />
+        <Footer ref="footer" className="invisible-footer" />
       </div>
     );
   }
