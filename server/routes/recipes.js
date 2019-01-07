@@ -10,10 +10,12 @@ router.get("/test", (req, res) => res.json({ msg: "Recipes route works!" }));
 // @route   GET recipes/:ingredients
 // @desc    Get list of recipes
 // @access  Public
-router.get("/:ingredients", (req, res) => {
+router.get("/:query", (req, res) => {
   const { recipe_puppy } = require("../constants/URLs");
-  const { ingredients } = req.params;
-  // TODO: validate user input before sent further
+  const { query } = req.params;
+  console.log(query);
+  // TODO: validate user input before sent further,
+  // In such case, return new query string (encoded)
 
   // TODO: get further pages and concatenate until the content gets repeated;
   let page = 1;
@@ -21,16 +23,21 @@ router.get("/:ingredients", (req, res) => {
   // Send the first page immediately:
   let data;
   axios
-    .get(`${recipe_puppy}/api/?i=${ingredients}&p=${page}`)
+    .get(`${recipe_puppy}/api/?i=${query}&p=${page}`)
     .then(response => {
       data = response.data.results;
       res.send(data);
     })
     .catch(err => {
-      res.send(data);
-      // Error status?
-      console.error(err.message);
+      console.error(
+        `:::${err}::: 
+        (probably a 'TOMATO SAUCE ERROR' --- unidentified problem with the Recipe Puppy API):
+        For any known query api responds with [], for <tomato%20sauce> however, it gives an error
+:::::::::::::::::::::::::::::::::::::::::::::::`
+      );
     });
+
+  // const handleNoResponse = () => new Promise((res, rej) => res())
 });
 
 module.exports = router;
