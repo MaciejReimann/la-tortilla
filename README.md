@@ -1,6 +1,6 @@
 # LaTortilla
 
-A simple user interface build with React displaying culinary recipes fetched by a proxy Express server from: http://www.recipepuppy.com/about/api/
+UI build with React to display culinary recipes fetched by a proxy Express server from: http://www.recipepuppy.com/about/api/
 
 ---
 
@@ -24,12 +24,12 @@ Build an app using React, where users are able to: \
 ## Challenges:
 
 &nbsp;&nbsp; 1. The responses from the given API lack the `Access-Control-Allow-Origin` HTTP header,\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; so it was impossible to fetch the data directly from the browser. Hence the proxy server.\
-&nbsp;&nbsp; 2. The quality of the linked images was very uneven, so they need to be displayed cropped and centered \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; so it was impossible to fetch the data directly from the browser. Hence the need for proxy server.\
+&nbsp;&nbsp; 2. The quality and geometry of the linked images was very uneven, so they need to be displayed cropped and centered \
 &nbsp;&nbsp; 3. Funny API errors;
 
 ## TODOs:
 
 - display the Error Card
 - set timeout for resending request to the server and display a message to the user
-- build desktop interface
+- restyle for desktop devices
