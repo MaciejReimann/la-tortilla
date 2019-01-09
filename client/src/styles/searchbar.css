@@ -1,6 +1,7 @@
 /*============================
 		    SEARCH BAR
 =============================*/
+
 :root {
   /* Search text input height for small devices: */
   --sm-input-height: calc(var(--sm-card-h) / 2.5);

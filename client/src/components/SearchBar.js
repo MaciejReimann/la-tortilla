@@ -29,23 +29,25 @@ export default class SearchBar extends Component {
         onSubmit={this.props.onSearchClick}
         role="search"
       >
-        <label htmlFor="ingredient-search" />
-        <input
-          className="search-input"
-          name="ingredient-search"
-          id="ingredient-search"
-          type="search"
-          placeholder="Search for ingredients..."
-          aria-label="search for the ingredients you'd like to use"
-          autoFocus={true}
-          list="suggestions"
-          onChange={this.handleChange}
-          value={this.props.value}
-        />
-        <Datalist id="suggestions" values={this.state.suggestions} />
-        <button type="submit" className="search-button">
-          <i className="search-icon fas fa-search" />
-        </button>
+        <fieldset>
+          <label htmlFor="ingredient-search" />
+          <input
+            className="search-input"
+            name="ingredient-search"
+            id="ingredient-search"
+            type="search"
+            placeholder="Search for ingredients..."
+            aria-label="search for the ingredients you'd like to use"
+            autoFocus={true}
+            list="suggestions"
+            onChange={this.handleChange}
+            value={this.props.value}
+          />
+          <Datalist id="suggestions" values={this.state.suggestions} />
+          <button type="submit" className="search-button">
+            <i className="search-icon fas fa-search" />
+          </button>
+        </fieldset>
       </form>
     );
   }
